@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đắm Say · Quà tặng số, AI giúp bạn gợi mở những điều muốn nói</title>
+<meta name="description" content="Tải vài tấm ảnh, trả lời vài câu hỏi. Đắm Say giúp bạn tạo nên món quà người nhận sẽ giữ mãi.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Đắm Say · Những điều chưa nói, để Đắm Say nói thay">
+<meta property="og:description" content="Quà tặng số cho mỗi dịp: vài tấm ảnh, vài câu trả lời, một món quà người nhận sẽ giữ mãi.">
+<meta name="theme-color" content="#4A0B14">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Great+Vibes&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<style>
+body { margin: 0; }
+a { color: #FF8A99; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; }
+.btn-white { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 56px; padding: 0 30px; border-radius: 14px; border: none; background: #FFFFFF; color: #4A0B14; font: 600 16px 'Be Vietnam Pro', sans-serif; text-decoration: none; cursor: pointer; box-shadow: 0 0 0 1px rgba(255,255,255,0.5), 0 10px 34px rgba(255,255,255,0.18); transition: transform .25s ease, box-shadow .25s ease; }
+.btn-white:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px #FFFFFF, 0 16px 44px rgba(255,138,153,0.6); }
+.btn-white:active { transform: translateY(0); }
+.btn-white svg { transition: transform .25s ease; }
+.btn-white:hover svg { transform: translateX(4px); }
+.btn-ghost { display: inline-flex; align-items: center; height: 56px; padding: 0 28px; border-radius: 14px; border: 1px solid #A04552; background: transparent; color: #FFFFFF; font: 500 15px 'Be Vietnam Pro', sans-serif; text-decoration: none; transition: background .25s ease, border-color .25s ease; }
+.btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #FFFFFF; }
+.btn-red { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 28px; border-radius: 14px; background: #C8102E; color: #FFFFFF; font: 600 15px 'Be Vietnam Pro', sans-serif; text-decoration: none; box-shadow: 0 10px 28px rgba(200,16,46,0.4); transition: transform .25s ease, box-shadow .25s ease; }
+.btn-red:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(200,16,46,0.55); }
+.btn-line { display: inline-flex; align-items: center; justify-content: center; height: 52px; border-radius: 12px; border: 1px solid #4A0B14; color: #4A0B14; font: 600 15px 'Be Vietnam Pro', sans-serif; text-decoration: none; transition: background .25s ease, color .25s ease; }
+.btn-line:hover { background: #4A0B14; color: #FFFFFF; }
+.card { transition: transform .35s ease, box-shadow .35s ease; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 22px 44px rgba(122,20,38,0.22); }
+.card:hover .cardicon { transform: scale(1.12) rotate(-6deg); }
+.cardicon { transition: transform .35s ease; }
+
+.fadeup { animation: fadeUp .9s cubic-bezier(.2,.7,.2,1) both; }
+.float1 { animation: floatY 6s ease-in-out infinite; }
+.float2 { animation: floatY2 7s ease-in-out infinite; }
+.float3 { animation: floatY 8s ease-in-out infinite; animation-delay: -3s; }
+.breathe { animation: breathe 7s ease-in-out infinite; }
+.ring { animation: ringOut 2.2s ease-out infinite; }
+.bob { animation: bob 1.4s ease-in-out infinite; }
+.rise { animation: riseUp 9s ease-in infinite; }
+.typing { display: block; width: 0; overflow: hidden; white-space: nowrap; border-right: 2px solid #FF8A99; animation: typing 3.4s steps(40) 1.4s forwards, caret .8s step-end infinite; }
+.shine { position: relative; overflow: hidden; }
+.shine::after { content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,0.28), rgba(255,255,255,0)); transform: skewX(-18deg); animation: shineMove 4.5s ease-in-out infinite; }
+.giftimg { animation: giftIn 1.1s cubic-bezier(.2,.9,.25,1.15) both; }
+.ln { animation: lineIn .8s ease both; }
+.burst { animation: burst 1.8s ease-out both; }
+.hl { background: linear-gradient(#FF8A99, #FF8A99) no-repeat 0 100% / 100% 3px; padding-bottom: 4px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(34px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes floatY {
+  0% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-16px) rotate(var(--r, 0deg)); }
+  100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+}
+@keyframes floatY2 {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+  100% { transform: translateY(0); }
+}
+@keyframes breathe {
+  0% { transform: scale(1); opacity: .85; }
+  50% { transform: scale(1.14); opacity: 1; }
+  100% { transform: scale(1); opacity: .85; }
+}
+@keyframes ringOut {
+  from { transform: scale(1); opacity: .7; }
+  to { transform: scale(2.1); opacity: 0; }
+}
+@keyframes bob {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+  100% { transform: translateY(0); }
+}
+@keyframes riseUp {
+  0% { transform: translateY(40px) scale(.7); opacity: 0; }
+  15% { opacity: .75; }
+  100% { transform: translateY(-620px) scale(1.15); opacity: 0; }
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes caret {
+  from { border-color: #FF8A99; }
+  50% { border-color: transparent; }
+  to { border-color: #FF8A99; }
+}
+@keyframes shineMove {
+  0% { left: -60%; }
+  55% { left: 130%; }
+  100% { left: 130%; }
+}
+@keyframes giftIn {
+  from { transform: translateY(140px) scale(.65) rotate(-9deg); opacity: 0; }
+  to { transform: translateY(0) scale(1) rotate(-2deg); opacity: 1; }
+}
+@keyframes lineIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes burst {
+  0% { transform: translate(0, 0) scale(.3); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--rot)); opacity: 0; }
+}
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(46px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hlGrow {
+  from { background-size: 0% 3px; }
+  to { background-size: 100% 3px; }
+}
+@supports (animation-timeline: view()) {
+  .reveal { animation: revealUp linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+  .hl { animation: hlGrow linear both; animation-timeline: view(); animation-range: entry 30% cover 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fadeup, .float1, .float2, .float3, .breathe, .ring, .bob, .rise, .shine::after, .giftimg, .ln, .burst, .reveal, .hl { animation: none !important; }
+  .typing { animation: none !important; width: 100%; border-right: none; }
+}
+
+html { scroll-behavior: smooth; }
+img, video { max-width: 100%; }
+@media (max-width: 760px) {
+  .wrap { padding-left: 20px; padding-right: 20px; }
+  .navhide { display: none; }
+  .hero-h1 { font-size: 2.55rem !important; }
+  .hero-h1 span { font-size: 2.95rem !important; }
+  h2 { font-size: 2rem !important; }
+  h2 span { font-size: 2.3rem !important; }
+  .statement { font-size: 2.3rem !important; }
+  .final-h { font-size: 2.1rem !important; }
+  .final-h span { font-size: 2.5rem !important; }
+  .stage { height: auto !important; flex-direction: column; gap: 22px; padding-bottom: 8px; }
+  .stage > .float2 { order: 2; }
+  .aicard { order: 1; position: static !important; width: 100% !important; max-width: 330px; box-sizing: border-box; animation: none !important; }
+  .polaroid { order: 3; position: static !important; width: 210px !important; animation: none !important; transform: rotate(-4deg) !important; }
+  .btn-white, .btn-ghost { width: 100%; justify-content: center; }
+}
+
+</style>
+</head>
+<body>
+<div style="width: 100%; background: #FFFFFF; color: #1C0507; font-family: 'Be Vietnam Pro', system-ui, sans-serif">
+
+  <div style="position: relative; overflow: hidden; background: #4A0B14; color: #FFFFFF">
+    <div class="breathe" aria-hidden="true" style="position: absolute; width: 900px; height: 900px; right: -140px; top: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(230,25,58,0.55), rgba(230,25,58,0) 64%)"></div>
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none"><svg class="rise" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 6%; bottom: 0; animation-delay: 0s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 16%; bottom: 0; animation-delay: 2.2s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 30%; bottom: 0; animation-delay: 4.1s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 48%; bottom: 0; animation-delay: 1.1s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 62%; bottom: 0; animation-delay: 5.3s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 78%; bottom: 0; animation-delay: 3.2s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 90%; bottom: 0; animation-delay: 6.4s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg></div>
+
+    <div class="wrap" style="position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 8px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img src="assets/lettering-light.png" alt="Đắm Say" style="height: 56px; width: auto; display: block">
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 26px; font-size: 14px">
+        <a class="navhide" href="#cach" style="color: #F3D6D9; text-decoration: none">Cách hoạt động</a>
+        <a class="navhide" href="#dip" style="color: #F3D6D9; text-decoration: none">Mẫu quà</a>
+        <a class="navhide" href="#gia" style="color: #F3D6D9; text-decoration: none">Bảng giá</a>
+        <a class="navhide" href="#" style="color: #FFFFFF; text-decoration: none">Đăng nhập</a>
+        <a href="#" class="btn-white" style="height: 44px; padding: 0 20px; font-size: 14px">Bắt đầu tạo</a>
+      </div>
+    </div>
+
+    <div class="wrap" style="position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 32px; padding-top: 40px; padding-bottom: 72px">
+      <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 26px; max-width: 640px">
+        <div class="fadeup" style="align-self: flex-start; padding: 7px 14px; border-radius: 14px; border: 1px solid #7A2230; font-size: 12.5px; font-weight: 600; color: #FF8A99; animation-delay: .05s">Quà tặng số · AI giúp bạn gợi mở những điều muốn nói</div>
+        <h1 class="fadeup hero-h1" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 4.25rem; line-height: 1.04; letter-spacing: -0.02em; animation-delay: .18s">Mở một món quà,<br>nghe người gửi <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 4.9rem; color: #FF8A99">nói điều chưa nói.</span></h1>
+        <p class="fadeup" style="margin: 0; font-size: 17px; line-height: 1.7; color: #DDB7BB; max-width: 540px; animation-delay: .34s">Người nhận chạm và giữ để bóc niêm phong. Bạn chỉ cần vài tấm ảnh và vài câu trả lời, phần còn lại để <span style="font-family: 'Great Vibes', cursive; font-size: 26px; color: #FFD9DE; text-shadow: 0 0 18px rgba(230,25,58,0.9)">Đắm Say</span> lo.</p>
+        <div class="fadeup" style="display: flex; flex-wrap: wrap; gap: 14px; animation-delay: .5s">
+          <a href="#" class="btn-white">Tạo món quà của bạn <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+          <a href="#cach" class="btn-ghost">Xem cách hoạt động</a>
+        </div>
+        <div class="fadeup" style="display: flex; flex-wrap: wrap; gap: 44px; padding-top: 18px; border-top: 1px solid #7A2230; max-width: 540px; animation-delay: .66s">
+          <div style="display: flex; flex-direction: column; gap: 4px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px">5 phút</div><div style="font-size: 13px; color: #DDB7BB">để tạo xong</div></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px">0đ</div><div style="font-size: 13px; color: #DDB7BB">để thử bản cơ bản</div></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px">Không cài app</div><div style="font-size: 13px; color: #DDB7BB">mở ngay từ link</div></div>
+        </div>
+      </div>
+
+      <div class="fadeup stage" style="position: relative; flex: 1 1 420px; min-width: 0; height: 760px; display: flex; align-items: center; justify-content: center; animation-delay: .3s">
+        <div class="float1 polaroid" style="--r: -8deg; position: absolute; left: 2%; top: 150px; width: 214px; background: #FFFFFF; padding: 10px 10px 38px; box-sizing: border-box; box-shadow: 0 16px 40px rgba(0,0,0,0.4); z-index: 3">
+          <video class="pvideo" autoplay muted loop playsinline aria-label="Video kỷ niệm" style="width: 100%; height: 150px; object-fit: cover; display: block; background: #FCE4E6"><source src="assets/memory.webm" type="video/webm"><source src="assets/memory.mp4" type="video/mp4"></video>
+        </div>
+
+        <div class="float2" style="position: relative; width: 330px; height: 680px; border-radius: 48px; background: #12040A; border: 10px solid #24090F; box-shadow: 0 0 0 1px #7A2230, 0 40px 90px rgba(230,25,58,0.45); overflow: hidden; z-index: 2">
+          <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 55%, #7A1426 0%, #2B0A0D 70%)"></div>
+          <div style="position: absolute; left: 0; right: 0; top: 58px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
+            <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #FFB3BD">Một món quà từ</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; color: #FFFFFF">Minh</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: #F3D6D9">gửi riêng Mây</div>
+          </div>
+
+          <div style="position: absolute; inset: 0">
+            <div class="giftimg" style="position: absolute; left: 50%; top: 172px; margin-left: -140px; width: 280px; transform: rotate(-2deg)">
+              <img src="assets/gift-cutout.png" alt="Món quà gồm phong bì, thiệp và bó hoa tulip" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.45))">
+              <div style="position: absolute; left: 9%; top: 34.5%; width: 60%">
+                <div class="ln" style="font-family: 'Great Vibes', cursive; font-size: 27px; line-height: 1.1; color: #000000; animation-delay: 1.1s">Dear May,</div>
+                <div class="ln" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 14px; line-height: 1.35; color: #000000; padding-top: 4px; animation-delay: 1.7s">Thank you for staying that rainy afternoon.</div>
+                <div class="ln" style="font-family: 'Great Vibes', cursive; font-size: 22px; line-height: 1.1; text-align: right; color: #000000; padding-top: 2px; animation-delay: 2.4s">Minh</div>
+              </div>
+            </div>
+            <svg class="burst" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: -120px; --dy: -90px; --rot: -20deg; animation-delay: 0.5s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: 110px; --dy: -110px; --rot: 25deg; animation-delay: 0.5700000000000001s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: -150px; --dy: -10px; --rot: -35deg; animation-delay: 0.64s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: 140px; --dy: 10px; --rot: 30deg; animation-delay: 0.71s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: -60px; --dy: -150px; --rot: 10deg; animation-delay: 0.78s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: 70px; --dy: -160px; --rot: -15deg; animation-delay: 0.8500000000000001s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: -90px; --dy: 50px; --rot: 20deg; animation-delay: 0.92s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="burst" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 50%; top: 370px; margin-left: -10px; --dx: 95px; --dy: 55px; --rot: -25deg; animation-delay: 0.99s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg>
+            <div class="ln" style="position: absolute; left: 0; right: 0; bottom: 56px; text-align: center; animation-delay: 3s">
+              <div style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px; color: #FDF1F2">Người nhận sẽ thấy đúng như vậy</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="float3 aicard" style="position: absolute; right: 0; top: 0; width: 290px; padding: 16px 18px; border-radius: 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(10px); z-index: 4">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: #FFB3BD; padding-bottom: 8px">AI GỢI MỞ</div>
+          <span class="typing" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; line-height: 1.4; color: #FFFFFF">Hôm đó có chuyện gì khiến bạn nhớ nhất?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="cach" style="background: #3A0810; color: #FFFFFF; position: relative; overflow: hidden">
+    <div class="breathe" aria-hidden="true" style="position: absolute; width: 600px; height: 600px; left: -160px; bottom: -160px; border-radius: 50%; background: radial-gradient(circle, rgba(230,25,58,0.35), rgba(230,25,58,0) 68%)"></div>
+    <div class="wrap" style="position: relative; padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 52px">
+      <div class="reveal" style="display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: 2.75rem; line-height: 1.15">Năm phút. Ba bước.<br>Một món quà <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 3.25rem; color: #FF8A99">người nhận giữ mãi.</span></h2>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px"><div class="reveal" style="flex: 1 1 280px; min-width: 0; border: 1px solid #64202B; padding: 36px 30px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.03)"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 60px; font-weight: 500; line-height: 1; color: #FFFFFF">01<span style="color: #FF8A99">.</span></div><div style="font-size: 19px; font-weight: 600">Chọn vài tấm ảnh</div><div style="font-size: 14.5px; line-height: 1.7; color: #DDB7BB">Những khoảnh khắc chỉ hai người hiểu. Ảnh là chất liệu để món quà có hồn.</div></div><div class="reveal" style="flex: 1 1 280px; min-width: 0; border: 1px solid #64202B; padding: 36px 30px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.03)"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 60px; font-weight: 500; line-height: 1; color: #FFFFFF">02<span style="color: #FF8A99">.</span></div><div style="font-size: 19px; font-weight: 600">Trả lời vài câu hỏi</div><div style="font-size: 14.5px; line-height: 1.7; color: #DDB7BB">AI nhìn ảnh và hỏi những câu gợi nhớ. Bạn chỉ cần trả lời thật lòng, viết vụng cũng được.</div></div><div class="reveal" style="flex: 1 1 280px; min-width: 0; border: 1px solid #64202B; padding: 36px 30px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.03)"><div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 60px; font-weight: 500; line-height: 1; color: #FFFFFF">03<span style="color: #FF8A99">.</span></div><div style="font-size: 19px; font-weight: 600">Gửi link niêm phong</div><div style="font-size: 14.5px; line-height: 1.7; color: #DDB7BB">Người nhận sẽ có một phong bì niêm sáp trái tim, phải chạm và giữ mới mở được.</div></div></div>
+    </div>
+  </div>
+
+  <div style="background: linear-gradient(180deg, #4A0B14, #6E1223); color: #FFFFFF; text-align: center">
+    <div class="wrap reveal" style="padding-top: 104px; padding-bottom: 104px; display: flex; flex-direction: column; align-items: center; gap: 22px">
+      <div class="statement" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 3.6rem; line-height: 1.15; max-width: 900px">Người Việt mình <span class="hl">thương nhiều</span> mà nói ít.</div>
+      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #F3D6D9; max-width: 620px">Cái khó không phải thiếu quà, mà là thiếu lời. Đắm Say hỏi đúng câu, để bạn nói ra đúng điều mình vẫn giữ trong lòng.</p>
+    </div>
+  </div>
+
+  <div id="dip" style="background: #FFF1F3">
+    <div class="wrap" style="padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px">
+      <div class="reveal" style="text-align: center">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 2.75rem; line-height: 1.1">Mỗi dịp một món quà<br><span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 3rem; color: #A30D25">cho người bạn thương</span></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px"><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #C8102E; border: 1px solid #C8102E; text-decoration: none; color: #FFFFFF"><div style="position: absolute; top: 16px; right: 16px; padding: 4px 10px; border-radius: 10px; background: #FFFFFF; color: #A30D25; font-size: 11px; font-weight: 700">Mùa này</div><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"></rect><path d="M3 12h18M12 8v13"></path><path d="M12 8c-2-4-6-3-5 0 .5 1.5 3 1 5 0zM12 8c2-4 6-3 5 0-.5 1.5-3 1-5 0z"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Giáng sinh</div><div style="font-size: 14px; line-height: 1.6; color: #FFE3E7">Hẹn giờ tự mở đúng 0h ngày 25/12, như mở quà dưới gốc thông.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21h16"></path><path d="M5 21V12h14v9"></path><path d="M12 12V8"></path><path d="M12 5.5c0-1 1-1.5 1-2.5"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Sinh nhật</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Hẹn giờ mở đúng 0 giờ, kèm những tấm ảnh của năm qua.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Kỷ niệm yêu</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Một năm, ba năm, mười năm. Kể lại hành trình bằng ảnh và lời.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9z"></path><path d="M7 11l4-7a2 2 0 0 1 3 2l-1 4h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 16.8 20H7"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Cảm ơn</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Gửi bố mẹ, thầy cô, đồng nghiệp. Lời cảm ơn khó nói ngoài đời.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Xin lỗi</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Khi một tin nhắn là chưa đủ, và gặp mặt thì lại quá khó.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c3 2 9 2 12 0v-5"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Tốt nghiệp</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Lời chúc cho chặng đường mới, kèm ảnh những năm tháng cũ.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-5h4v5"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Gia đình</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Những điều con chưa từng nói với bố mẹ, nay gói thành một món quà.</div></a></div><div class="reveal" style="display: flex"><a href="#" class="card" style="position: relative; flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px; border-radius: 20px; background: #FFFFFF; border: 1px solid #F2D3D7; text-decoration: none; color: #1C0507"><div class="cardicon" style="width: 56px; height: 56px; border-radius: 28px; background: #FFE3E7; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A0B14" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Dịp khác</div><div style="font-size: 14px; line-height: 1.6; color: #6E4A4E">Tự chọn dịp của bạn, Đắm Say gợi ý nội dung phù hợp.</div></a></div></div>
+      <div class="reveal" style="display: flex; justify-content: center">
+        <a href="#" class="btn-red">Chọn dịp của bạn</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="gia" style="background: #FFFFFF">
+    <div class="wrap" style="max-width: 1040px; padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px">
+      <div class="reveal" style="text-align: center; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 2.75rem">Trả theo <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 3.25rem; color: #C8102E">từng món quà</span></h2>
+        <p style="margin: 0; font-size: 15px; color: #523236">Không thuê bao, không trừ tiền hằng tháng.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+        <div class="reveal" style="flex: 1 1 300px; display: flex"><div class="card" style="flex: 1; border-radius: 20px; background: #FFF1F3; padding: 36px 32px; display: flex; flex-direction: column; gap: 18px">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Cơ bản</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 44px; font-weight: 800">Miễn phí</div>
+          <div style="font-size: 14.5px; line-height: 2; color: #523236">Link tồn tại 7 ngày<br>Tối đa 3 ảnh<br>Câu hỏi gợi ý soạn sẵn<br>1 lượt dùng thử AI<br>Có watermark</div>
+          <a href="#" class="btn-line" style="margin-top: auto">Tạo thử miễn phí</a>
+        </div></div>
+        <div class="reveal" style="flex: 1 1 300px; display: flex"><div class="card shine" style="flex: 1; border-radius: 20px; background: #1C0507; color: #FFFFFF; padding: 36px 32px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 20px 60px rgba(230,25,58,0.4)">
+          <div style="position: relative; display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">Trọn vẹn</span><span style="padding: 5px 10px; border-radius: 8px; background: #C8102E; font-size: 12px; font-weight: 600">Được chọn nhiều</span></div>
+          <div style="position: relative; font-family: 'Bricolage Grotesque', sans-serif; font-size: 44px; font-weight: 800">29.000đ <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 14px; font-weight: 400; color: #DDB7BB">/ món quà</span></div>
+          <div style="position: relative; font-size: 14.5px; line-height: 2; color: #F3D6D9">Link giữ mãi mãi · Tới 20 ảnh<br>AI gợi mở cảm xúc và chỉnh câu chữ<br>Nhạc nền · Niêm sáp trái tim<br>Hẹn giờ mở quà · Báo khi đã đọc<br>Không watermark</div>
+          <a href="#" class="btn-white" style="position: relative; margin-top: auto; height: 52px; font-size: 15px">Tạo quà trọn vẹn</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #1C0507; color: #DDB7BB; position: relative; overflow: hidden">
+    <div class="breathe" aria-hidden="true" style="position: absolute; width: 760px; height: 760px; left: 50%; top: -240px; margin-left: -380px; border-radius: 50%; background: radial-gradient(circle, rgba(230,25,58,0.45), rgba(230,25,58,0) 64%)"></div>
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none"><svg class="rise" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 6%; bottom: 0; animation-delay: 0s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 16%; bottom: 0; animation-delay: 2.2s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 30%; bottom: 0; animation-delay: 4.1s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 48%; bottom: 0; animation-delay: 1.1s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 62%; bottom: 0; animation-delay: 5.3s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 78%; bottom: 0; animation-delay: 3.2s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg><svg class="rise" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#FF8A99" style="position: absolute; left: 90%; bottom: 0; animation-delay: 6.4s; opacity: 0"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 3.2C20 15.8 12 21 12 21z"></path></svg></div>
+    <div class="wrap reveal" style="position: relative; padding-top: 88px; padding-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center">
+      <div class="final-h" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 3rem; line-height: 1.1; color: #FFFFFF">Nói điều khó nói,<br><span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; font-size: 3.5rem; color: #FF8A99">theo cách đẹp nhất.</span></div>
+      <a href="#" class="btn-white">Bắt đầu tạo món quà <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; padding-top: 32px">
+        <a href="#" style="color: #DDB7BB">Điều khoản</a>
+        <a href="#" style="color: #DDB7BB">Quyền riêng tư</a>
+        <a href="#" style="color: #DDB7BB">Liên hệ</a>
+        <span>© Đắm Say</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
