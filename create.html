@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đắm Say · Tạo món quà Giáng sinh</title>
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Great+Vibes&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#FFF1F3}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#4A0B14;-webkit-tap-highlight-color:transparent}
+#app{max-width:430px;height:100vh;height:100dvh;margin:0 auto;background:#fff;display:flex;flex-direction:column;position:relative;box-shadow:0 0 60px rgba(122,20,38,.12)}
+.band{height:5px;background:linear-gradient(90deg,#E0193A 0 33%,#1F5A3E 33% 66%,#E8C27A 66%);flex-shrink:0}
+header{padding:10px 24px 4px;display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.hrow{display:flex;align-items:center;justify-content:space-between;height:44px}
+.hrow a,.hrow button{width:44px;height:44px;display:flex;align-items:center;color:#4A0B14;background:none;border:none;padding:0;cursor:pointer;text-decoration:none}
+.hrow img{height:38px;width:auto}
+.hrow .st{width:44px;text-align:right;font-size:12px;font-weight:600;color:#6E4A4E}
+.bar{height:3px;border-radius:2px;background:#F6E1E3}.bar div{height:3px;border-radius:2px;background:#E0193A;transition:width .4s}
+main{flex:1;overflow-y:auto;padding:10px 24px 14px}
+.step{display:none;flex-direction:column;gap:14px}.step.on{display:flex;animation:fi .4s ease both}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+h1{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.01em;line-height:1.1}
+h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:32px;color:#E0193A}
+.sub{font-size:13px;line-height:1.55;color:#6E4A4E;margin:-6px 0 0}
+label,.lbl{font-size:12px;font-weight:600;color:#6E4A4E;display:block;margin-bottom:6px}
+input[type=text],input[type=url],input[type=datetime-local],textarea{width:100%;border-radius:12px;border:1px solid #EBC6CB;background:#fff;padding:12px 14px;font:400 14px/1.5 'Be Vietnam Pro',sans-serif;color:#4A0B14}
+input:focus,textarea:focus{outline:2px solid #E0193A;outline-offset:1px}
+textarea{resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 12px;border-radius:10px;font:500 12.5px 'Be Vietnam Pro',sans-serif;border:1px solid #EBC6CB;background:#fff;color:#4A0B14;cursor:pointer}
+.chip.on{border-color:#E0193A;background:#FFF1F3;color:#C0122F}
+.card{border-radius:16px;background:#4A0B14;color:#fff;padding:14px;display:flex;gap:12px;align-items:center}
+.card .env{width:54px;height:54px;border-radius:12px;background:linear-gradient(160deg,#D9B38C,#B98A5E);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.note{padding:12px 14px;border-radius:14px;background:#EAF3EE;font-size:12.5px;line-height:1.55;color:#1F5A3E}
+.slot{display:flex;gap:12px;padding:10px;border-radius:16px;border:1px solid #F2D3D7}
+.slot .ph{width:84px;height:104px;border-radius:10px;background:#FFE3E7;flex-shrink:0;overflow:hidden;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C0122F;font-size:12px;text-align:center}
+.slot .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slot .f{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
+.slot .f input{padding:8px 10px;font-size:13px}
+.slot .k{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#E0193A;display:flex;justify-content:space-between}
+.slot .k button{background:none;border:none;color:#6E4A4E;font-size:11px;cursor:pointer;text-transform:none;letter-spacing:0}
+.add{height:52px;border-radius:14px;border:1px dashed #E0193A;background:#FFF1F3;color:#C0122F;font:600 13.5px 'Be Vietnam Pro',sans-serif;cursor:pointer}
+.song{display:none;gap:12px;align-items:center;padding:12px;border-radius:16px;background:#FFF1F3}
+.song.on{display:flex}
+.song .cv{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#E0193A,#4A0B14);flex-shrink:0}
+.sealw{align-self:center;position:relative;width:132px;height:132px;display:flex;align-items:center;justify-content:center}
+.sealb{all:unset;cursor:pointer;touch-action:none;display:flex;-webkit-user-select:none;user-select:none}
+.ring{stroke-dasharray:352;stroke-dashoffset:352}.ring.go{animation:rg 1.6s linear forwards}
+@keyframes rg{to{stroke-dashoffset:0}}
+.sum{padding:14px;border-radius:14px;border:1px solid #F2D3D7;display:flex;flex-direction:column;gap:4px}
+.plan{display:flex;gap:12px;padding:14px;border-radius:14px;border:1.5px solid #F2D3D7;cursor:pointer}
+.plan.on{border-color:#E0193A;background:#FFF1F3}
+.plan input{accent-color:#E0193A;width:20px;height:20px;margin:2px 0 0}
+.plan b{font-family:'Bricolage Grotesque',sans-serif;font-size:17px}
+footer{padding:10px 24px 22px;border-top:1px solid #F6E1E3;display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.btn{display:flex;align-items:center;justify-content:center;height:52px;border:none;border-radius:14px;background:#E0193A;color:#fff;font:600 15px 'Be Vietnam Pro',sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(230,25,58,.35);text-decoration:none}
+.btn:hover{background:#C8102E}.btn[disabled]{opacity:.5;cursor:not-allowed}
+.ghost{background:none;border:none;color:#C0122F;font:600 13px 'Be Vietnam Pro',sans-serif;cursor:pointer;padding:6px}
+.err{color:#C0122F;font-size:12.5px;min-height:16px;text-align:center}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="band"></div>
+  <header>
+    <div class="hrow">
+      <button id="back" type="button" aria-label="Quay lại"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <a href="index.html" aria-label="Đắm Say"><img src="assets/lettering-dark.png" alt="Đắm Say"></a>
+      <div class="st" id="st">1/6</div>
+    </div>
+    <div class="bar"><div id="pb" style="width:16%"></div></div>
+  </header>
+  <main>
+    <section class="step on" id="p1">
+      <h1>Tặng ai <em>mùa này?</em></h1>
+      <p class="sub">Món quà Giáng sinh: 1 lá thư, 1 bài hát và những tấm ảnh.</p>
+      <div class="card"><div class="env"><svg width="28" height="26" viewBox="0 0 100 92" aria-hidden="true"><path d="M50 88 C10 58 2 38 2 26 C2 12 13 3 26 3 C37 3 45 9 50 18 C55 9 63 3 74 3 C87 3 98 12 98 26 C98 38 90 58 50 88Z" fill="#C8102E"/></svg></div><div><div style="font-weight:700;font-size:14.5px">Phong bì Giáng sinh</div><div style="font-size:12px;color:#FFD9DE">Tuyết rơi · đèn dây · niêm vân tay</div></div></div>
+      <div><label for="to">Bạn gửi cho ai? (tên người nhận sẽ thấy)</label><input type="text" id="to" placeholder="Ví dụ: Mây" maxlength="30"></div>
+      <div><label for="from">Bạn là ai?</label><input type="text" id="from" placeholder="Ví dụ: Minh" maxlength="30"></div>
+      <div><span class="lbl">Người nhận là</span><div class="chips" id="rel"><button type="button" class="chip on">Người yêu</button><button type="button" class="chip">Bạn bè</button><button type="button" class="chip">Bố mẹ</button><button type="button" class="chip">Anh chị em</button><button type="button" class="chip">Khác</button></div></div>
+    </section>
+
+    <section class="step" id="p2">
+      <h1>Chọn bài hát <em>hộ bạn</em></h1>
+      <p class="sub">Dán link YouTube hoặc Spotify. Bài hát sẽ tự phát khi người nhận bóc niêm.</p>
+      <div><label for="song">Link bài hát</label><input type="url" id="song" placeholder="https://www.youtube.com/watch?v=…"></div>
+      <div><label for="songTitle">Tên bài hát (hiện trên thanh nhạc)</label><input type="text" id="songTitle" placeholder="Tên bài hát · Ca sĩ" maxlength="60"></div>
+      <div class="song" id="songCard"><div class="cv"></div><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14px" id="scT">Bài hát của bạn</div><div style="font-size:12px;color:#6E4A4E" id="scS"></div></div></div>
+      <div><label for="lyrics">Lời bài hát chạy cùng lá thư (mỗi dòng một câu)</label><textarea id="lyrics" rows="5" placeholder="Dán lời bài hát bạn muốn hiện. Mỗi dòng sẽ sáng lên lần lượt."></textarea></div>
+      <p class="sub" style="margin-top:-6px">Bạn chỉ nên dán những dòng bạn có quyền chia sẻ. Để trống thì Đắm Say dùng lời mẫu.</p>
+    </section>
+
+    <section class="step" id="p3">
+      <h1>Kể bằng <em>ảnh</em></h1>
+      <p class="sub">Mỗi ảnh là một chương, kèm một dòng chú thích. Gói Cơ bản tối đa 3 ảnh.</p>
+      <div id="slots" style="display:flex;flex-direction:column;gap:12px"></div>
+      <button type="button" class="add" id="addSlot">+ Thêm ảnh</button>
+      <input type="file" id="file" accept="image/*" hidden>
+    </section>
+
+    <section class="step" id="p4">
+      <h1>Lá thư <em>của bạn</em></h1>
+      <p class="sub">Trả lời hai câu, Đắm Say gợi ý bản nháp. Sửa thoải mái.</p>
+      <div><label for="q1">Điều bạn nhớ nhất khi ở bên người nhận?</label><textarea id="q1" rows="2" placeholder="Ví dụ: những buổi tối đi chơi dưới trời lạnh"></textarea></div>
+      <div><label for="q2">Điều bạn chưa từng nói?</label><textarea id="q2" rows="2" placeholder="Ví dụ: cảm ơn vì đã luôn ở lại"></textarea></div>
+      <button type="button" class="chip on" id="draft" style="align-self:flex-start">✦ Gợi ý bản nháp</button>
+      <div><label for="letter">Lá thư (mỗi đoạn cách nhau một dòng trống)</label><textarea id="letter" rows="8"></textarea></div>
+      <div><label for="endLine">Câu cuối cùng</label><input type="text" id="endLine" maxlength="80" placeholder="Cảm ơn vì mùa đông nào cũng ở lại."></div>
+    </section>
+
+    <section class="step" id="p5">
+      <h1>Niêm phong <em>& hẹn giờ</em></h1>
+      <p class="sub">Dấu vân tay của bạn là con dấu. Người nhận cũng phải giữ tay để bóc ra.</p>
+      <div class="sealw">
+        <svg width="132" height="132" viewBox="0 0 120 120" style="position:absolute;inset:0;transform:rotate(-90deg)" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="none" stroke="#F2D3D7" stroke-width="4"/><circle id="ring" class="ring" cx="60" cy="60" r="56" fill="none" stroke="#E0193A" stroke-width="4" stroke-linecap="round"/></svg>
+        <button type="button" class="sealb" id="sealb" aria-label="Giữ để in dấu"><span id="sealh"></span></button>
+      </div>
+      <div id="sealTxt" style="text-align:center;font-size:13px;font-weight:600;margin-top:-4px">Giữ ngón tay để in dấu niêm phong</div>
+      <div><label for="when">Quà tự mở vào</label><input type="datetime-local" id="when"></div>
+      <div class="chips"><button type="button" class="chip on" id="xmas">Đêm Giáng sinh 0h</button><button type="button" class="chip" id="now">Mở ngay khi nhận</button></div>
+      <div class="note">Trước giờ mở, người nhận chỉ thấy phong bì đóng kín và đồng hồ đếm ngược.</div>
+    </section>
+
+    <section class="step" id="p6">
+      <h1>Sẵn sàng <em>gửi quà</em></h1>
+      <div class="card" style="cursor:default"><div class="env" style="width:48px;height:60px;border-radius:8px"></div><div style="flex:1"><div style="font-weight:700;font-size:14px" id="sumT">Gửi Mây · Giáng sinh 2026</div><div style="font-size:12px;color:#FFD9DE" id="sumS"></div></div></div>
+      <label class="plan on" id="planFull"><input type="radio" name="plan" checked><div style="flex:1"><div style="display:flex;justify-content:space-between;align-items:baseline"><b>Trọn vẹn</b><b style="color:#C0122F;font-weight:800">29.000đ</b></div><div style="font-size:12px;line-height:1.65;color:#523236;margin-top:4px">Link giữ mãi mãi · Nhạc và lời bài hát · Niêm vân tay · Hẹn giờ mở · Báo khi người nhận mở · Không watermark</div></div></label>
+      <label class="plan" id="planFree"><input type="radio" name="plan"><div style="flex:1"><div style="display:flex;justify-content:space-between;align-items:baseline"><b>Cơ bản</b><span style="font-size:13px;font-weight:600;color:#523236">Miễn phí</span></div><div style="font-size:12px;line-height:1.65;color:#523236;margin-top:4px">Link 7 ngày · tối đa 3 ảnh · không hẹn giờ · có watermark</div></div></label>
+      <div class="note" id="payNote">Bản thử: thanh toán chưa mở. Bấm “Xem thử như người nhận” để xem món quà của bạn.</div>
+    </section>
+  </main>
+  <footer>
+    <div class="err" id="err" role="alert"></div>
+    <button type="button" class="btn" id="next">Tiếp tục</button>
+    <button type="button" class="ghost" id="preview" style="display:none">Xem thử như người nhận</button>
+  </footer>
+</div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var step=1,N=6,sealed=false,slots=[{img:'',title:'Lần đầu',cap:''},{img:'',title:'Hôm bạn nhớ nhất',cap:''},{img:'',title:'Bây giờ',cap:''}],editing=-1;
+var saved={};try{saved=JSON.parse(sessionStorage.getItem('dasay_form')||'{}')}catch(e){}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* heart for seal */
+(function(){var d='M50 88 C10 58 2 38 2 26 C2 12 13 3 26 3 C37 3 45 9 50 18 C55 9 63 3 74 3 C87 3 98 12 98 26 C98 38 90 58 50 88Z',r='',i;for(i=0;i<10;i++)r+='<ellipse cx="50" cy="52" rx="'+(3+i*5)+'" ry="'+(2+i*4.6)+'" fill="none" stroke="rgba(255,225,200,.6)" stroke-width="1.4"/>';
+$('sealh').innerHTML='<svg width="86" height="79" viewBox="0 0 100 92" aria-hidden="true"><path id="hp" d="'+d+'" fill="#C8102E"/><clipPath id="cc"><path d="'+d+'"/></clipPath><g clip-path="url(#cc)">'+r+'</g></svg>'})();
+/* default time: 0h 25/12 of the coming Christmas */
+function xmasDate(){var n=new Date(),y=n.getFullYear();if(n>new Date(y,11,25))y++;return y+'-12-25T00:00'}
+function localNow(){var n=new Date(Date.now()+60000);n.setMinutes(n.getMinutes()-n.getTimezoneOffset());return n.toISOString().slice(0,16)}
+$('when').value=xmasDate();
+$('xmas').onclick=function(){$('when').value=xmasDate();$('xmas').classList.add('on');$('now').classList.remove('on')};
+$('now').onclick=function(){$('when').value=localNow();$('now').classList.add('on');$('xmas').classList.remove('on')};
+$('when').onchange=function(){$('xmas').classList.remove('on');$('now').classList.remove('on')};
+/* chips */
+document.querySelectorAll('#rel .chip').forEach(function(b){b.onclick=function(){document.querySelectorAll('#rel .chip').forEach(function(x){x.classList.remove('on')});b.classList.add('on')}});
+/* song card */
+function songInfo(){var u=$('song').value.trim(),c=$('songCard');if(!u){c.classList.remove('on');return}c.classList.add('on');$('scT').textContent=$('songTitle').value||'Bài hát của bạn';$('scS').textContent=/youtu/.test(u)?'YouTube':/spotify/.test(u)?'Spotify':'Link chưa nhận dạng được'}
+$('song').oninput=songInfo;$('songTitle').oninput=songInfo;
+/* slots */
+function renderSlots(){var h='';slots.forEach(function(s,i){h+='<div class="slot"><div class="ph" data-i="'+i+'" role="button" tabindex="0" aria-label="Chọn ảnh">'+(s.img?'<img alt="" src="'+s.img+'">':'+ Chọn ảnh')+'</div><div class="f"><div class="k"><span>Chương '+(i+1)+'</span>'+(slots.length>1?'<button type="button" data-rm="'+i+'">Xóa</button>':'')+'</div><input type="text" data-t="'+i+'" value="'+esc(s.title)+'" maxlength="40" aria-label="Tên chương"><input type="text" data-c="'+i+'" value="'+esc(s.cap)+'" maxlength="80" placeholder="Một dòng chú thích…" aria-label="Chú thích"></div></div>'});$('slots').innerHTML=h;$('addSlot').style.display=slots.length>=6?'none':''}
+renderSlots();
+$('slots').addEventListener('click',function(e){var p=e.target.closest('.ph');if(p){editing=+p.dataset.i;$('file').click()}var r=e.target.closest('[data-rm]');if(r){slots.splice(+r.dataset.rm,1);renderSlots()}});
+$('slots').addEventListener('input',function(e){var t=e.target;if(t.dataset.t!==undefined)slots[+t.dataset.t].title=t.value;if(t.dataset.c!==undefined)slots[+t.dataset.c].cap=t.value});
+$('addSlot').onclick=function(){slots.push({img:'',title:'Chương '+(slots.length+1),cap:''});renderSlots()};
+$('file').onchange=function(){var f=this.files[0];this.value='';if(!f||editing<0)return;var i=editing,rd=new FileReader();rd.onload=function(){var im=new Image();im.onload=function(){var m=720,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);slots[i].img=c.toDataURL('image/jpeg',.82);renderSlots()};im.src=rd.result};rd.readAsDataURL(f)};
+/* draft letter (rule-based placeholder until AI is connected) */
+$('draft').onclick=function(){var a=$('q1').value.trim(),b=$('q2').value.trim(),to=$('to').value.trim()||'bạn';var t='Lại một mùa Giáng sinh nữa. '+(a?'Mình hay nghĩ về '+a.replace(/[.!]+$/,'')+', và chỗ nào cũng thấy ấm.':'Mình hay nghĩ về những mùa đông đã đi qua cùng nhau.')+'\n\n'+(b?'Có điều mình chưa từng nói: '+b.replace(/[.!]+$/,'')+'. Nên năm nay để bài hát và vài tấm ảnh nói thay.':'Có những điều mình chưa kịp nói, nên năm nay để bài hát và vài tấm ảnh nói thay.');$('letter').value=t;if(!$('endLine').value)$('endLine').value=b?b.replace(/[.!]+$/,'')+'.':'Cảm ơn vì mùa đông nào cũng ở lại.'};
+/* seal */
+var ht=null;function sdown(e){e.preventDefault();if(sealed)return;$('ring').classList.add('go');$('sealTxt').textContent='Giữ nguyên nhé…';clearTimeout(ht);ht=setTimeout(function(){sealed=true;$('hp').setAttribute('fill','#1F5A3E');$('sealTxt').textContent='Đã lưu dấu vân tay của bạn';$('err').textContent=''},1600)}
+function sup(){if(sealed)return;clearTimeout(ht);$('ring').classList.remove('go');$('sealTxt').textContent='Giữ ngón tay để in dấu niêm phong'}
+['mousedown','touchstart'].forEach(function(n){$('sealb').addEventListener(n,sdown,{passive:false})});['mouseup','mouseleave','touchend','touchcancel'].forEach(function(n){$('sealb').addEventListener(n,sup)});
+/* plan */
+$('planFull').onclick=function(){$('planFull').classList.add('on');$('planFree').classList.remove('on')};$('planFree').onclick=function(){$('planFree').classList.add('on');$('planFull').classList.remove('on')};
+/* data */
+function build(){
+ var ch=slots.filter(function(s){return s.img||s.cap}).map(function(s){return{img:s.img||'assets/photo-'+(slots.indexOf(s)%3+1)+'.jpg',title:s.title||'Chương',cap:s.cap}});
+ var L=$('lyrics').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+ var P=$('letter').value.split(/\n\s*\n/).map(function(x){return x.trim()}).filter(Boolean);
+ return{to:$('to').value.trim()||'Mây',from:$('from').value.trim()||'Minh',song:$('song').value.trim(),songTitle:$('songTitle').value.trim(),lyrics:L,letter:P,end:$('endLine').value.trim(),chapters:ch,open:$('when').value}}
+/* nav */
+var titles={1:'',2:'',3:'',4:'',5:'',6:''};
+function show(n){step=n;document.querySelectorAll('.step').forEach(function(s,i){s.classList.toggle('on',i===n-1)});$('st').textContent=n+'/'+N;$('pb').style.width=(n/N*100)+'%';$('next').textContent=n===N?'Thanh toán 29.000đ và lấy link':'Tiếp tục';$('preview').style.display=n>=2?'block':'none';$('err').textContent='';document.querySelector('main').scrollTop=0;
+ if(n===6){var b=build();$('sumT').textContent='Gửi '+b.to+' · Giáng sinh 2026';$('sumS').textContent='1 thư · '+(b.song?'1 bài hát':'chưa có bài hát')+' · '+b.chapters.length+' ảnh · mở '+(b.open?new Date(b.open).toLocaleString('vi-VN',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'}):'ngay')}}
+function check(){
+ if(step===1&&(!$('to').value.trim()||!$('from').value.trim()))return'Hãy nhập tên người nhận và tên của bạn.';
+ if(step===5&&!sealed)return'Giữ ngón tay trên trái tim để niêm phong món quà nhé.';
+ return''}
+$('next').onclick=function(){var e=check();if(e){$('err').textContent=e;return}if(step===N){$('payNote').textContent='Cổng thanh toán (MoMo, ZaloPay) sẽ được kết nối ở bản chính thức. Bây giờ bạn có thể xem thử miễn phí.';$('payNote').style.background='#FFF1F3';$('payNote').style.color='#C0122F';return}show(step+1)};
+$('back').onclick=function(){if(step===1)location.href='index.html';else show(step-1)};
+$('preview').onclick=function(){try{sessionStorage.setItem('dasay_gift',JSON.stringify(build()))}catch(e){$('err').textContent='Ảnh quá nặng để xem thử, hãy bớt ảnh hoặc chọn ảnh nhẹ hơn.';return}location.href='gift.html'};
+})();
+</script>
+</body>
+</html>

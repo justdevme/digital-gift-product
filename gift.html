@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đắm Say · Một món quà dành cho bạn</title>
+<meta name="theme-color" content="#4A0B14">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Great+Vibes&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1C0507}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#fff;-webkit-tap-highlight-color:transparent}
+a{color:#FFD9DE}
+#app{position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;margin:0 auto;background:#4A0B14;overflow:hidden}
+.glow1{position:absolute;width:460px;height:460px;left:-35px;top:150px;border-radius:50%;background:radial-gradient(circle,rgba(230,25,58,.5),rgba(230,25,58,0) 68%)}
+.glow2{position:absolute;width:360px;height:360px;right:-160px;bottom:-80px;border-radius:50%;background:radial-gradient(circle,rgba(31,90,62,.75),rgba(31,90,62,0) 70%)}
+.snow{position:absolute;top:-12px;border-radius:50%;background:#fff;opacity:.8;animation:snowFall linear infinite;pointer-events:none}
+@keyframes snowFall{0%{transform:translate3d(0,0,0);opacity:0}10%{opacity:.85}100%{transform:translate3d(24px,110vh,0);opacity:.1}}
+.bulb{animation:twinkle 2.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+.lights{position:absolute;left:0;top:0;width:100%;height:70px;pointer-events:none}
+.sprig{position:absolute;bottom:-14px;width:120px;height:170px;pointer-events:none}
+.sprig.l{left:-18px}.sprig.r{right:-18px;transform:scaleX(-1)}
+.scr{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;padding:56px 26px 26px;text-align:center;overflow-y:auto}
+.scr.on{display:flex;animation:fadein .7s ease both}
+@keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.logo{height:34px;width:auto;opacity:.9}
+.script{font-family:'Great Vibes',cursive}
+.serif{font-family:'Cormorant Garamond',serif;font-style:italic}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:54px;border:none;border-radius:14px;background:#fff;color:#4A0B14;font:600 15px 'Be Vietnam Pro',sans-serif;text-decoration:none;cursor:pointer;box-shadow:0 8px 28px rgba(230,25,58,.45);flex-shrink:0}
+.btn:active{transform:translateY(1px)}
+.link{background:none;border:none;color:#FFD9DE;font:400 13px 'Be Vietnam Pro',sans-serif;padding:14px 10px 0;cursor:pointer;text-decoration:underline}
+.sp{flex:1;min-height:12px}
+.bob{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pulse{animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px rgba(255,138,153,.5))}50%{transform:scale(1.07);filter:drop-shadow(0 0 16px rgba(255,138,153,.95))}}
+.env{position:relative;margin:0 auto}
+.env .back{position:absolute;inset:0;border-radius:6px;background:linear-gradient(160deg,#D9B38C,#B98A5E);box-shadow:0 22px 50px rgba(0,0,0,.55),0 0 60px rgba(230,25,58,.35)}
+.env .front{position:absolute;left:0;right:0;bottom:0;height:70%;background:linear-gradient(200deg,#E3C29E,#C9976A);clip-path:polygon(0 100%,50% 8%,100% 100%);opacity:.9}
+.env .flap{position:absolute;left:0;top:0;width:100%;height:60%;background:linear-gradient(170deg,#E9CCA8,#CFA374);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 4px 4px rgba(0,0,0,.25));transform-origin:top;transition:transform .9s ease}
+.env.open .flap{transform:rotateX(180deg);opacity:.4}
+.cd{display:flex;gap:8px;align-items:center;margin-top:12px}
+.cd div.b{min-width:62px;padding:10px 8px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+.cd .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:28px;line-height:1}
+.cd .u{font-size:10px;color:#DDB7BB;margin-top:4px}
+.cd .c{font-size:24px;color:#FF8A99}
+.sealwrap{position:relative;width:116px;height:116px;display:flex;align-items:center;justify-content:center}
+.sealbtn{all:unset;cursor:pointer;touch-action:none;width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(74,11,20,.35);-webkit-user-select:none;user-select:none}
+.ring{stroke-dasharray:352;stroke-dashoffset:352}
+.ring.go{animation:ringgo 1.6s linear forwards}
+@keyframes ringgo{to{stroke-dashoffset:0}}
+.music{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);width:100%;text-align:left}
+.disc{width:38px;height:38px;border-radius:50%;background:conic-gradient(#1c0507,#4A0B14,#1c0507,#4A0B14,#1c0507);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:spin 6s linear infinite}
+.disc i{width:12px;height:12px;border-radius:50%;background:#FF8A99}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eq{display:flex;align-items:flex-end;gap:3px;height:18px}
+.eq i{display:block;width:3px;border-radius:2px;background:#FFD27A;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}.eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{0%,100%{height:4px}50%{height:16px}}
+.paused .disc,.paused .eq i{animation-play-state:paused}
+.mbtn{all:unset;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,255,255,.3)}
+.letter{width:100%;margin-top:14px;border-radius:18px;background:#FFF8F7;color:#4A0B14;padding:22px;text-align:left;box-shadow:0 0 0 1px rgba(255,138,153,.3),0 18px 50px rgba(230,25,58,.5)}
+.letter .to{font-family:'Great Vibes',cursive;font-size:38px;color:#C0122F;line-height:1.1}
+.letter p{margin:6px 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.5}
+.letter .from{font-family:'Great Vibes',cursive;font-size:32px;color:#C0122F;text-align:right}
+.lyrics{width:100%;margin-top:14px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:16px 18px;display:flex;flex-direction:column;gap:8px;text-align:center;min-height:150px;justify-content:center}
+.lyrics .lb{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#FF8A99}
+.lyrics .ln{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(255,255,255,.4);min-height:22px}
+.kara{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:23px;line-height:1.25;min-height:29px;background:linear-gradient(#fff,#fff) no-repeat left/0% 100%,linear-gradient(rgba(255,255,255,.38),rgba(255,255,255,.38));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.kara.run{animation:kara 4s linear forwards}
+@keyframes kara{from{background-size:0% 100%,100% 100%}to{background-size:100% 100%,100% 100%}}
+.segs{display:flex;gap:5px;width:100%}
+.seg{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+.seg b{display:block;height:100%;width:0;background:#fff}
+.seg.done b{width:100%}
+.seg.cur b{animation:seg var(--d,7s) linear forwards}
+@keyframes seg{to{width:100%}}
+.polaroid{width:262px;background:#fff;padding:12px 12px 16px;color:#4A0B14;position:relative;box-shadow:0 18px 44px rgba(0,0,0,.5);transform:rotate(-3deg);animation:fadein .7s ease both}
+.polaroid .tape{position:absolute;top:-12px;left:50%;margin-left:-34px;width:68px;height:22px;background:rgba(255,210,122,.75);transform:rotate(-3deg)}
+.polaroid img{width:100%;height:290px;object-fit:cover;display:block;background:#FFE3E7}
+.polaroid .cap{font-family:'Great Vibes',cursive;font-size:26px;color:#C0122F;padding-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{height:36px;padding:0 14px;border-radius:18px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font:500 12.5px 'Be Vietnam Pro',sans-serif;cursor:pointer}
+.chip.sel{background:#fff;color:#4A0B14}
+.box{width:100%;padding:16px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;flex-direction:column;gap:12px}
+.box textarea{width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font:400 14px/1.5 'Be Vietnam Pro',sans-serif;padding:10px 12px;resize:none}
+#ytbox{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
+@media (prefers-reduced-motion:reduce){.snow,.bulb,.bob,.pulse,.disc,.eq i{animation:none}.kara.run{animation:none;background-size:100% 100%,100% 100%}.seg.cur b{animation:none;width:100%}}
+</style>
+</head>
+<body>
+<main id="app">
+  <div class="glow1" aria-hidden="true"></div><div class="glow2" aria-hidden="true"></div>
+  <div id="snowbox" aria-hidden="true"></div>
+  <svg class="lights" id="lights" viewBox="0 0 390 70" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <svg class="sprig l" id="sprigL" viewBox="0 0 120 170" aria-hidden="true"></svg>
+  <svg class="sprig r" id="sprigR" viewBox="0 0 120 170" aria-hidden="true"></svg>
+
+  <!-- 1. Chờ đếm ngược -->
+  <section class="scr on" id="s1" aria-label="Chờ mở quà">
+    <img class="logo" src="assets/lettering-light.png" alt="Đắm Say">
+    <div style="margin-top:26px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#FFD9DE">Một món quà từ</div>
+    <div class="script" id="fromName" style="font-size:60px;line-height:1.05;text-shadow:0 0 22px rgba(230,25,58,.9)">Minh</div>
+    <div style="font-size:13px;color:#DDB7BB;margin-top:2px">gửi riêng <span id="toName1">Mây</span> · Giáng sinh 2026</div>
+    <div class="bob" style="margin-top:30px"><div class="env" id="env1" style="width:280px;height:190px"><div class="back"></div><div class="front"></div><div class="flap"></div><div style="position:absolute;left:107px;top:78px" class="pulse" id="seal1"></div></div></div>
+    <div class="serif" style="margin-top:34px;font-size:20px;color:#FFD9DE" id="waitTxt">Còn một chút nữa thôi…</div>
+    <div class="cd" id="cd"><div class="b"><div class="n" id="hh">00</div><div class="u">giờ</div></div><span class="c">:</span><div class="b"><div class="n" id="mm">00</div><div class="u">phút</div></div><span class="c">:</span><div class="b"><div class="n" id="ss">00</div><div class="u">giây</div></div></div>
+    <div style="font-size:12.5px;color:#DDB7BB;margin-top:12px" id="openAt">Quà tự mở lúc 0h ngày 25/12/2026</div>
+    <div class="sp"></div>
+    <button class="btn" id="remind" type="button">Nhắc tôi lúc mở quà</button>
+    <button class="link" id="demoBtn" type="button">Xem thử bản mở sớm (demo)</button>
+  </section>
+
+  <!-- 2. Bóc niêm -->
+  <section class="scr" id="s2" aria-label="Bóc niêm phong">
+    <img class="logo" src="assets/lettering-light.png" alt="Đắm Say">
+    <div class="serif" style="margin-top:22px;font-size:26px;line-height:1.25"><span id="fromName2">Minh</span> đã niêm phong<br>món quà bằng dấu vân tay</div>
+    <div style="position:relative;margin-top:30px;width:300px;height:204px">
+      <div class="env" id="env2" style="width:300px;height:204px"><div class="back"></div><div class="front"></div><div class="flap"></div></div>
+      <div class="sealwrap" style="position:absolute;left:92px;top:68px">
+        <svg width="116" height="116" viewBox="0 0 120 120" style="position:absolute;inset:0;transform:rotate(-90deg)" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="4"/><circle id="ring" class="ring" cx="60" cy="60" r="56" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+        <button class="sealbtn" id="sealbtn" type="button" aria-label="Giữ ngón tay để mở"><span id="seal2" class="pulse" style="display:flex"></span></button>
+      </div>
+    </div>
+    <div class="bob" style="margin-top:26px"><svg width="30" height="36" viewBox="0 0 30 36" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 22V7a3 3 0 0 1 6 0v10l5 1c3 .6 4 2 4 5l-1 7c-.4 2-1.6 3-3.4 3H13c-1.6 0-2.6-.8-3.6-2.2L4 22c-.8-1.2.4-2.6 1.8-2z"/></svg></div>
+    <div id="hint" style="margin-top:6px;font-size:16px;font-weight:600">Đặt ngón tay lên dấu vân tay và giữ</div>
+    <div style="margin-top:6px;font-size:12.5px;line-height:1.6;color:#DDB7BB;max-width:290px">Khi bóc niêm, bài hát sẽ tự phát<br>(mở được cả trong Zalo, Messenger)</div>
+    <div class="sp"></div>
+    <button class="btn" id="readBtn" type="button" style="display:none"><span>Đọc thư của&nbsp;<span id="fromName3">Minh</span></span></button>
+    <button class="link" id="skipSeal" type="button">Hoặc chạm vào đây nếu không giữ được</button>
+  </section>
+
+  <!-- 3. Thư + lời -->
+  <section class="scr" id="s3" aria-label="Lá thư" style="padding-top:62px;align-items:stretch">
+    <div class="music" id="music"><div class="disc"><i></i></div><div style="flex:1;min-width:0"><div id="songTitle" style="font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Bài hát của bạn</div><div id="songSub" style="font-size:11.5px;color:#DDB7BB">bài hát được chọn riêng cho bạn</div></div><div class="eq"><i></i><i></i><i></i><i></i></div><button class="mbtn" id="muteBtn" type="button" aria-label="Tắt hoặc bật nhạc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg></button></div>
+    <div class="letter"><div class="to" id="letTo">Gửi Mây,</div><div id="letBody"></div><div class="from" id="letFrom">Minh</div></div>
+    <div class="lyrics" id="lyricsBox"><div class="lb">Lời bài hát</div><div class="ln" id="lnPrev"></div><div class="kara" id="lnCur"></div><div class="ln" id="lnNext"></div></div>
+    <div style="height:14px;flex-shrink:0"></div>
+    <button class="btn" id="toPhotos" type="button">Xem những tấm ảnh</button>
+  </section>
+
+  <!-- 4. Ảnh -->
+  <section class="scr" id="s4" aria-label="Ảnh theo chương" style="padding-top:62px">
+    <div class="segs" id="segs"></div>
+    <div style="width:100%;text-align:left;margin-top:14px"><div id="chNum" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#FF8A99"></div><div id="chTitle" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:1.1;margin-top:4px"></div></div>
+    <div style="padding:30px 0 4px" id="phWrap"></div>
+    <div class="serif" id="chLine" style="font-size:19px;line-height:1.45;color:#FFE3E7;padding:0 8px;margin-top:6px;min-height:56px"></div>
+    <div class="sp"></div>
+    <div style="display:flex;gap:10px;width:100%"><button id="prevCh" type="button" aria-label="Chương trước" style="width:54px;height:54px;border-radius:14px;border:1px solid rgba(255,255,255,.35);background:none;color:#fff;cursor:pointer;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button class="btn" id="nextCh" type="button">Chương tiếp theo</button></div>
+  </section>
+
+  <!-- 5. Kết -->
+  <section class="scr" id="s5" aria-label="Lời cuối">
+    <img class="logo" src="assets/lettering-light.png" alt="Đắm Say">
+    <div id="thumbs" style="display:flex;gap:6px;margin-top:22px"></div>
+    <div class="script" style="margin-top:30px;font-size:54px;line-height:1.05;text-shadow:0 0 22px rgba(230,25,58,.9)">Giáng sinh<br>vui vẻ, <span id="toName5">Mây</span></div>
+    <div class="serif" id="endLine" style="margin-top:12px;font-size:19px;line-height:1.5;color:#FFE3E7;max-width:290px"></div>
+    <div class="box" style="margin-top:22px" id="replyBox">
+      <div style="font-size:13.5px;font-weight:600">Nhắn lại cho <span id="fromName5">Minh</span> một câu nhé</div>
+      <div class="chips" id="chips"><button class="chip" type="button">Cảm ơn bạn ❤</button><button class="chip" type="button">Mình khóc mất rồi</button><button class="chip" type="button">Gặp nhau nhé</button></div>
+      <textarea id="reply" rows="2" placeholder="Hoặc tự viết…" aria-label="Lời hồi âm"></textarea>
+      <button class="btn" id="sendReply" type="button" style="height:48px;font-size:14px">Gửi lời hồi âm</button>
+    </div>
+    <div class="sp"></div>
+    <a href="index.html" style="font-size:13.5px;margin-top:18px">Tạo một món quà của riêng bạn trên <span style="font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.22em">ĐẮM SAY</span></a>
+    <button class="link" id="replay" type="button">Xem lại từ đầu</button>
+  </section>
+  <div id="ytbox"></div>
+</main>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var DEF={to:'Mây',from:'Minh',letter:['Lại một mùa Giáng sinh nữa. Mình hay nghĩ về những lần mình đi qua tháng Mười Hai bên nhau, lạnh, đông người, mà chỗ nào cũng thấy ấm.','Có những điều mình chưa kịp nói, nên năm nay để bài hát và vài tấm ảnh nói thay.'],end:'Cảm ơn vì mùa đông nào cũng ở lại.',song:'',songTitle:'Bài hát của bạn',
+ lyrics:['Mùa đông này có người ở bên','Tuyết rơi ngoài kia cũng hóa thành ấm','Mình hát cho nhau nghe những điều chưa nói','Giáng sinh nào cũng có cậu cạnh bên'],
+ chapters:[{img:'assets/photo-1.jpg',title:'Lần đầu',cap:'Lần đầu mình đi xa cùng nhau'},{img:'assets/photo-2.jpg',title:'Hôm bạn nhớ nhất',cap:'Tối hôm ấy, mưa chưa ngớt'},{img:'assets/photo-3.jpg',title:'Bây giờ',cap:'Giờ vẫn là cậu bên cạnh'}],open:''};
+var G=DEF;
+try{var raw=sessionStorage.getItem('dasay_gift');if(raw){var u=JSON.parse(raw);G=Object.assign({},DEF,u);if(!G.chapters||!G.chapters.length)G.chapters=DEF.chapters;if(!G.lyrics||!G.lyrics.length)G.lyrics=DEF.lyrics;if(!G.letter||!G.letter.length)G.letter=DEF.letter}}catch(e){}
+var qs=new URLSearchParams(location.search);
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- decor ---------- */
+(function(){
+ var s='',i,seed=7;function r(){seed=(seed*9301+49297)%233280;return seed/233280}
+ for(i=0;i<20;i++){var z=3+Math.floor(r()*4);s+='<i class="snow" style="left:'+Math.floor(r()*100)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+(7+r()*7).toFixed(1)+'s;animation-delay:-'+(r()*12).toFixed(1)+'s"></i>'}
+ $('snowbox').innerHTML=s;
+ var cols=['#FF8A99','#FFD27A','#9FE3B5','#FFFFFF'],pts=[[12,22],[62,38],[112,48],[162,52],[212,50],[262,44],[312,34],[362,22]],b='<path d="M-4 8 Q 100 62 200 50 T 394 8" fill="none" stroke="#2a0509" stroke-width="1.6"/>';
+ pts.forEach(function(p,i){var c=cols[i%4];b+='<circle class="bulb" cx="'+p[0]+'" cy="'+(p[1]+6)+'" r="5.5" fill="'+c+'" style="animation-delay:'+(i*.3).toFixed(1)+'s;filter:drop-shadow(0 0 6px '+c+')"/>'});
+ $('lights').innerHTML=b;
+ var n='<path d="M60 170 Q58 90 76 20" stroke="#1F5A3E" stroke-width="3" fill="none"/>';
+ for(i=0;i<7;i++){n+='<path d="M60 '+(150-i*16)+' L'+(18+i*3)+' '+(128-i*17)+'" stroke="#2F7A55" stroke-width="3" stroke-linecap="round"/><path d="M60 '+(150-i*16)+' L'+(102-i*3)+' '+(128-i*17)+'" stroke="#1F5A3E" stroke-width="3" stroke-linecap="round"/>'}
+ n+='<circle cx="44" cy="118" r="5" fill="#E0193A"/><circle cx="76" cy="90" r="5" fill="#E0193A"/><circle cx="50" cy="66" r="4.5" fill="#FF8A99"/>';
+ $('sprigL').innerHTML=n;$('sprigR').innerHTML=n;
+})();
+function heart(sz,id){
+ var d='M50 88 C10 58 2 38 2 26 C2 12 13 3 26 3 C37 3 45 9 50 18 C55 9 63 3 74 3 C87 3 98 12 98 26 C98 38 90 58 50 88Z',rd='',i;
+ for(i=0;i<10;i++){rd+='<ellipse cx="50" cy="52" rx="'+(3+i*5)+'" ry="'+(2+i*4.6)+'" fill="none" stroke="rgba(255,225,200,.55)" stroke-width="1.4"/><ellipse cx="58" cy="50" rx="'+(3+i*4.5)+'" ry="'+(2+i*4.2)+'" fill="none" stroke="rgba(120,10,30,.45)" stroke-width="1.2" transform="rotate(-24 58 50)"/>'}
+ return '<svg width="'+sz+'" height="'+(sz*.92)+'" viewBox="0 0 100 92" aria-hidden="true"><defs><clipPath id="'+id+'"><path d="'+d+'"/></clipPath></defs><path d="'+d+'" fill="#C8102E"/><g clip-path="url(#'+id+')">'+rd+'</g><path d="'+d+'" fill="none" stroke="#FF8A99" stroke-width="2"/></svg>';
+}
+$('seal1').innerHTML=heart(66,'h1');$('seal2').innerHTML=heart(62,'h2');
+
+/* ---------- data into DOM ---------- */
+['fromName','fromName2','fromName3','fromName5'].forEach(function(k){$(k).textContent=G.from});
+['toName1','toName5'].forEach(function(k){$(k).textContent=G.to});
+$('letTo').textContent='Gửi '+G.to+',';$('letFrom').textContent=G.from;
+G.letter.forEach(function(t){var p=document.createElement('p');p.textContent=t;$('letBody').appendChild(p)});
+$('endLine').textContent=G.end+(G.end?' ':'')+'— '+G.from;
+$('songTitle').textContent=G.songTitle||'Bài hát của bạn';
+document.title='Một món quà từ '+G.from+' · Đắm Say';
+G.chapters.forEach(function(c){var im=document.createElement('img');im.src=c.img;im.alt='';im.style.cssText='width:96px;height:120px;object-fit:cover;border:5px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.45)';$('thumbs').appendChild(im)});
+var th=$('thumbs').children;if(th[0])th[0].style.transform='rotate(-6deg)';if(th[1])th[1].style.marginTop='10px';if(th[2])th[2].style.transform='rotate(5deg)';
+
+/* ---------- navigation ---------- */
+var cur='s1';
+function go(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.toggle('on',s.id===id)});cur=id;if(id==='s4')showCh(0);else stopCh();if(id==='s3')startLyrics();else stopLyrics()}
+
+/* ---------- countdown ---------- */
+var target;
+if(G.open){target=new Date(G.open).getTime()}
+if(!target||isNaN(target)){target=Date.now()+(2*3600+14*60+36)*1000;}
+if(G.open&&!isNaN(new Date(G.open))){var d=new Date(G.open);$('openAt').textContent='Quà tự mở lúc '+d.getHours()+'h'+(d.getMinutes()?String(d.getMinutes()).padStart(2,'0'):'')+' ngày '+d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear()}
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){var l=Math.max(0,Math.floor((target-Date.now())/1000));$('hh').textContent=pad(Math.floor(l/3600));$('mm').textContent=pad(Math.floor(l%3600/60));$('ss').textContent=pad(l%60);if(l===0&&cur==='s1'){$('waitTxt').textContent='Đến giờ rồi!';setTimeout(function(){go('s2')},900);clearInterval(tm)}}
+var tm=setInterval(tick,1000);tick();
+$('demoBtn').onclick=function(){go('s2')};
+$('remind').onclick=function(){var b=$('remind');b.textContent='Đã ghi nhớ, mình sẽ nhắc bạn';b.style.opacity='.85';try{if(window.Notification&&Notification.permission==='default')Notification.requestPermission()}catch(e){}};
+
+/* ---------- audio ---------- */
+var audioOn=false,muted=false,yt=null;
+function ytId(u){var m=u&&u.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:null}
+function spId(u){var m=u&&u.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist)\/(\w+)/);return m?[m[1],m[2]]:null}
+function startMusic(){
+ if(audioOn)return;audioOn=true;
+ var u=G.song,y=ytId(u),sp=spId(u);
+ if(y){$('ytbox').innerHTML='<iframe id="ytf" src="https://www.youtube.com/embed/'+y+'?autoplay=1&loop=1&playlist='+y+'&enablejsapi=1&playsinline=1" allow="autoplay" width="200" height="200" title="Nhạc nền"></iframe>';$('songSub').textContent='đang phát từ YouTube'}
+ else if(sp){var mu=$('music');var f=document.createElement('iframe');f.src='https://open.spotify.com/embed/'+sp[0]+'/'+sp[1]+'?theme=0';f.height='80';f.style.cssText='border:0;width:100%;margin-top:10px;border-radius:12px;flex-shrink:0';f.allow='autoplay; encrypted-media';f.title='Spotify';$('s3').insertBefore(f,$('s3').children[1]);$('songSub').textContent='nhấn play ở thanh Spotify bên dưới'}
+ else{$('songSub').textContent='bản demo: chưa gắn link bài hát'}
+}
+$('muteBtn').onclick=function(){muted=!muted;var f=$('ytf');if(f&&f.contentWindow)f.contentWindow.postMessage(JSON.stringify({event:'command',func:muted?'mute':'unMute',args:[]}),'*');$('music').classList.toggle('paused',muted)};
+
+/* ---------- seal hold ---------- */
+var holdT=null,opened=false;
+function unseal(){if(opened)return;opened=true;$('env2').classList.add('open');$('ring').classList.remove('go');$('ring').style.strokeDashoffset='0';$('hint').textContent='Đã bóc niêm phong';$('readBtn').style.display='flex';$('skipSeal').style.display='none';startMusic();if(navigator.vibrate)try{navigator.vibrate(40)}catch(e){}}
+function down(e){if(e&&e.preventDefault)e.preventDefault();if(opened)return;$('ring').classList.add('go');$('hint').textContent='Giữ nguyên nhé…';clearTimeout(holdT);holdT=setTimeout(unseal,reduce?300:1600)}
+function up(){if(opened)return;clearTimeout(holdT);var r=$('ring');r.classList.remove('go');r.style.strokeDashoffset='';$('hint').textContent='Đặt ngón tay lên dấu vân tay và giữ'}
+var sb=$('sealbtn');
+['mousedown','touchstart'].forEach(function(n){sb.addEventListener(n,down,{passive:false})});
+['mouseup','mouseleave','touchend','touchcancel'].forEach(function(n){sb.addEventListener(n,up)});
+sb.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){down(e)}});
+sb.addEventListener('keyup',function(e){if(e.key==='Enter'||e.key===' ')up()});
+$('skipSeal').onclick=unseal;
+$('readBtn').onclick=function(){go('s3')};
+
+/* ---------- lyrics ---------- */
+var lyT=null,lyI=0;
+function renderLy(){var L=G.lyrics,k=$('lnCur');$('lnPrev').textContent=L[lyI-1]||'';$('lnNext').textContent=L[lyI+1]||'';k.textContent=L[lyI]||'';k.classList.remove('run');void k.offsetWidth;k.classList.add('run')}
+function startLyrics(){stopLyrics();lyI=0;renderLy();lyT=setInterval(function(){lyI=(lyI+1)%G.lyrics.length;renderLy()},4200)}
+function stopLyrics(){clearInterval(lyT)}
+$('toPhotos').onclick=function(){go('s4')};
+
+/* ---------- chapters ---------- */
+var ci=0,chT=null;
+function showCh(i){
+ ci=i;var C=G.chapters,c=C[i],n=C.length;
+ $('chNum').textContent='Chương '+(i+1)+' / '+n;$('chTitle').textContent=c.title;$('chLine').textContent=c.cap?'':'';
+ var segs='';for(var k=0;k<n;k++)segs+='<div class="seg '+(k<i?'done':k===i?'cur':'')+'" style="--d:7s"><b></b></div>';$('segs').innerHTML=segs;
+ var w=$('phWrap');w.innerHTML='';var p=document.createElement('div');p.className='polaroid';p.style.transform='rotate('+(i%2?3:-3)+'deg)';
+ p.innerHTML='<div class="tape"></div><img alt=""><div class="cap"></div>';p.querySelector('img').src=c.img;p.querySelector('.cap').textContent=c.cap;w.appendChild(p);
+ $('chLine').textContent=G.lyrics[i%G.lyrics.length]||'';
+ $('nextCh').textContent=i===n-1?'Đến lời cuối':'Chương tiếp theo';
+ $('prevCh').style.visibility='visible';
+ clearTimeout(chT);chT=setTimeout(function(){nextCh()},7000);
+}
+function stopCh(){clearTimeout(chT)}
+function nextCh(){if(ci>=G.chapters.length-1){go('s5')}else showCh(ci+1)}
+$('nextCh').onclick=nextCh;
+$('prevCh').onclick=function(){if(ci===0)go('s3');else showCh(ci-1)};
+
+/* ---------- end ---------- */
+document.querySelectorAll('#chips .chip').forEach(function(b){b.onclick=function(){document.querySelectorAll('#chips .chip').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');$('reply').value=b.textContent}});
+$('sendReply').onclick=function(){if(!$('reply').value.trim()){$('reply').focus();return}var box=$('replyBox');box.innerHTML='<div class="script" style="font-size:36px">Đã gửi!</div><div style="font-size:13px;color:#FFE3E7">'+G.from.replace(/[<>&]/g,'')+' sẽ nhận được lời nhắn của bạn.</div>'};
+$('replay').onclick=function(){opened=false;location.reload()};
+if(qs.get('step')){var st=qs.get('step');if(/^s[1-5]$/.test(st)){if(st!=='s1'){opened=true;$('readBtn').style.display='flex'}go(st)}}
+})();
+</script>
+</body>
+</html>
