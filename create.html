@@ -62,6 +62,42 @@ footer{padding:10px 24px 22px;border-top:1px solid #F6E1E3;display:flex;flex-dir
 .btn:hover{background:#C8102E}.btn[disabled]{opacity:.5;cursor:not-allowed}
 .ghost{background:none;border:none;color:#C0122F;font:600 13px 'Be Vietnam Pro',sans-serif;cursor:pointer;padding:6px}
 .err{color:#C0122F;font-size:12.5px;min-height:16px;text-align:center}
+
+#pv{display:none}
+@media (min-width:960px){
+html,body{background:#4A0B14}
+#app{max-width:1320px;box-shadow:none;display:grid;grid-template-columns:minmax(0,600px) minmax(0,1fr);grid-template-rows:auto auto 1fr auto;background:#fff}
+.band{grid-column:1/-1}
+header,main,footer{grid-column:1;padding-left:56px;padding-right:56px}
+main{padding-top:20px}
+h1{font-size:34px}h1 em{font-size:42px}
+.sub{font-size:14px}
+#pv{display:block;grid-column:2;grid-row:2/span 3;position:relative;overflow:hidden;background:#4A0B14;color:#fff}
+.pvglow{position:absolute;width:700px;height:700px;left:-120px;top:60px;border-radius:50%;background:radial-gradient(circle,rgba(230,25,58,.5),rgba(230,25,58,0) 68%)}
+.pvglow2{position:absolute;width:520px;height:520px;right:-200px;bottom:-160px;border-radius:50%;background:radial-gradient(circle,rgba(31,90,62,.75),rgba(31,90,62,0) 70%)}
+.pvlights{position:absolute;left:0;top:0;width:100%;height:70px}
+.pvin{position:relative;height:100%;padding:76px 48px 40px;display:flex;flex-direction:column;gap:22px;overflow-y:auto}
+.pvt{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#FF8A99}
+.pvrow{display:grid;grid-template-columns:240px 1fr;gap:34px;align-items:center}
+.pvenv{position:relative;width:240px;height:162px}
+.pvenv .b{position:absolute;inset:0;border-radius:6px;background:linear-gradient(160deg,#D9B38C,#B98A5E);box-shadow:0 22px 50px rgba(0,0,0,.55),0 0 60px rgba(230,25,58,.35)}
+.pvenv .f{position:absolute;left:0;right:0;bottom:0;height:70%;background:linear-gradient(200deg,#E3C29E,#C9976A);clip-path:polygon(0 100%,50% 8%,100% 100%);opacity:.9}
+.pvenv .fl{position:absolute;left:0;top:0;width:100%;height:60%;background:linear-gradient(170deg,#E9CCA8,#CFA374);clip-path:polygon(0 0,100% 0,50% 100%)}
+.pvenv .h{position:absolute;left:87px;top:66px}
+.pvfrom{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#FFD9DE}
+.pvname{font-family:'Great Vibes',cursive;font-size:64px;line-height:1.05;text-shadow:0 0 22px rgba(230,25,58,.9)}
+.pvto{font-size:13px;color:#DDB7BB}
+.pvletter{border-radius:18px;background:#FFF8F7;color:#4A0B14;padding:24px 28px;box-shadow:0 0 0 1px rgba(255,138,153,.3),0 18px 50px rgba(230,25,58,.5)}
+.pvletter .to{font-family:'Great Vibes',cursive;font-size:40px;color:#C0122F;line-height:1.1}
+.pvletter p{margin:6px 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.55}
+.pvletter .fr{font-family:'Great Vibes',cursive;font-size:34px;color:#C0122F;text-align:right}
+.pvph{display:flex;gap:12px;flex-wrap:wrap}
+.pvph div{width:120px;background:#fff;padding:6px 6px 10px;color:#C0122F;box-shadow:0 10px 24px rgba(0,0,0,.45);font-family:'Great Vibes',cursive;font-size:15px;text-align:center;line-height:1.1}
+.pvph img{width:100%;height:120px;object-fit:cover;display:block;margin-bottom:4px;background:#FFE3E7}
+.pvsong{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);max-width:420px}
+.pvsong i{width:34px;height:34px;border-radius:50%;background:conic-gradient(#1c0507,#4A0B14,#1c0507,#4A0B14,#1c0507);display:block;flex-shrink:0}
+.pvopen{font-size:12.5px;color:#DDB7BB}
+}
 </style>
 </head>
 <body>
@@ -139,6 +175,20 @@ footer{padding:10px 24px 22px;border-top:1px solid #F6E1E3;display:flex;flex-dir
     <button type="button" class="btn" id="next">Tiếp tục</button>
     <button type="button" class="ghost" id="preview" style="display:none">Xem thử như người nhận</button>
   </footer>
+  <aside id="pv" aria-hidden="true">
+    <div class="pvglow"></div><div class="pvglow2"></div>
+    <svg class="pvlights" id="pvl" viewBox="0 0 800 70" preserveAspectRatio="none"></svg>
+    <div class="pvin">
+      <div class="pvt">Xem trước · món quà của bạn</div>
+      <div class="pvrow">
+        <div class="pvenv"><div class="b"></div><div class="f"></div><div class="fl"></div><div class="h" id="pvh"></div></div>
+        <div><div class="pvfrom">Một món quà từ</div><div class="pvname" id="pvF">Minh</div><div class="pvto" id="pvT"></div><div class="pvopen" id="pvO" style="margin-top:8px"></div></div>
+      </div>
+      <div class="pvletter"><div class="to" id="pvTo"></div><div id="pvBody"></div><div class="fr" id="pvFr"></div></div>
+      <div class="pvph" id="pvPh"></div>
+      <div class="pvsong"><i></i><div><div id="pvS" style="font-size:13.5px;font-weight:600">Chưa chọn bài hát</div><div style="font-size:11.5px;color:#DDB7BB">sẽ tự phát khi người nhận bóc niêm</div></div></div>
+    </div>
+  </aside>
 </div>
 <script>
 (function(){
@@ -193,6 +243,21 @@ function check(){
 $('next').onclick=function(){var e=check();if(e){$('err').textContent=e;return}if(step===N){$('payNote').textContent='Cổng thanh toán (MoMo, ZaloPay) sẽ được kết nối ở bản chính thức. Bây giờ bạn có thể xem thử miễn phí.';$('payNote').style.background='#FFF1F3';$('payNote').style.color='#C0122F';return}show(step+1)};
 $('back').onclick=function(){if(step===1)location.href='index.html';else show(step-1)};
 $('preview').onclick=function(){try{sessionStorage.setItem('dasay_gift',JSON.stringify(build()))}catch(e){$('err').textContent='Ảnh quá nặng để xem thử, hãy bớt ảnh hoặc chọn ảnh nhẹ hơn.';return}location.href='gift.html'};
+
+/* ---------- desktop live preview ---------- */
+(function(){
+ var d='M50 88 C10 58 2 38 2 26 C2 12 13 3 26 3 C37 3 45 9 50 18 C55 9 63 3 74 3 C87 3 98 12 98 26 C98 38 90 58 50 88Z',r='',i;for(i=0;i<10;i++)r+='<ellipse cx="50" cy="52" rx="'+(3+i*5)+'" ry="'+(2+i*4.6)+'" fill="none" stroke="rgba(255,225,200,.55)" stroke-width="1.4"/>';
+ $('pvh').innerHTML='<svg width="66" height="61" viewBox="0 0 100 92"><path d="'+d+'" fill="#C8102E"/><clipPath id="pc"><path d="'+d+'"/></clipPath><g clip-path="url(#pc)">'+r+'</g><path d="'+d+'" fill="none" stroke="#FF8A99" stroke-width="2"/></svg>';
+ var cols=['#FF8A99','#FFD27A','#9FE3B5','#FFFFFF'],b='',x,k=0;for(x=40;x<800;x+=90){var y=8+44*Math.sin(Math.PI*((x%260)/260));b+='<circle cx="'+x+'" cy="'+(y+6)+'" r="5" fill="'+cols[k++%4]+'"/>'}
+ $('pvl').innerHTML='<path d="M0 8 Q 130 70 260 8 T 520 8 T 800 8" fill="none" stroke="#2a0509" stroke-width="1.5"/>'+b;
+ function pv(){var B=build(),o=$('pvO');$('pvF').textContent=B.from;$('pvT').textContent='gửi riêng '+B.to+' · Giáng sinh 2026';
+  $('pvTo').textContent='Gửi '+B.to+',';$('pvFr').textContent=B.from;
+  var P=B.letter.length?B.letter:['Lại một mùa Giáng sinh nữa. Mình hay nghĩ về những mùa đông đã đi qua cùng nhau.'],h='';P.slice(0,3).forEach(function(t){h+='<p>'+esc(t)+'</p>'});$('pvBody').innerHTML=h;
+  var ph='';slots.forEach(function(sl,i){ph+='<div><img alt="" src="'+(sl.img||'assets/photo-'+(i%3+1)+'.jpg')+'">'+esc(sl.cap||sl.title)+'</div>'});$('pvPh').innerHTML=ph;
+  $('pvS').textContent=B.songTitle||(B.song?'Bài hát của bạn':'Chưa chọn bài hát');
+  o.textContent=B.open?'Tự mở lúc '+new Date(B.open).toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'numeric',year:'numeric'}):''}
+ document.addEventListener('input',pv);document.addEventListener('click',function(){setTimeout(pv,50)});pv();
+})();
 })();
 </script>
 </body>

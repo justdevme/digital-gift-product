@@ -21,7 +21,7 @@ a{color:#FFD9DE}
 @keyframes snowFall{0%{transform:translate3d(0,0,0);opacity:0}10%{opacity:.85}100%{transform:translate3d(24px,110vh,0);opacity:.1}}
 .bulb{animation:twinkle 2.4s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
-.lights{position:absolute;left:0;top:0;width:100%;height:70px;pointer-events:none}
+.lights{position:absolute;left:0;top:0;width:100%;height:70px;pointer-events:none;overflow:visible}
 .sprig{position:absolute;bottom:-14px;width:120px;height:170px;pointer-events:none}
 .sprig.l{left:-18px}.sprig.r{right:-18px;transform:scaleX(-1)}
 .scr{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;padding:56px 26px 26px;text-align:center;overflow-y:auto}
@@ -89,6 +89,57 @@ a{color:#FFD9DE}
 .box{width:100%;padding:16px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;flex-direction:column;gap:12px}
 .box textarea{width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font:400 14px/1.5 'Be Vietnam Pro',sans-serif;padding:10px 12px;resize:none}
 #ytbox{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
+
+@media (min-width:900px){
+#app{max-width:none}
+.logo{position:absolute;left:44px;top:26px;height:42px}
+.scr{padding:96px 6vw 48px;overflow-y:auto}
+.scr.on{display:grid;grid-template-columns:minmax(0,500px) minmax(0,500px);column-gap:88px;justify-content:center;align-content:center;justify-items:stretch;grid-auto-rows:min-content;text-align:center}
+.scr>*{grid-column:1}
+.scr>.hero{grid-column:2;grid-row:1/span 12;align-self:center;justify-self:center}
+.scr>.herol{grid-column:1;grid-row:1/span 12;align-self:center}
+.scr>.herol~*{grid-column:2}
+.scr>.sp{display:none}
+.scr>.cd{justify-content:center;align-self:center}
+.scr>.cd,.scr>div:not(.hero):not(.herol):not(.letter):not(.lyrics):not(.music):not(.box):not(.segs){justify-self:center}
+.scr>.bob.hero{transform:scale(1.35);transform-origin:center}
+#fromName{font-size:88px!important}
+.cd .b{min-width:84px!important}.cd .n{font-size:40px!important}
+#s1>.btn,#s1>.link{max-width:360px;justify-self:center}
+#s2.on{grid-template-columns:minmax(0,520px)}
+#s2>*{grid-column:1;justify-self:center;text-align:center}
+#s2>.btn{max-width:360px}
+#s2>div[style*="position:relative"]{transform:scale(1.2);margin:48px 0 40px!important}
+#s3.on{align-content:center}
+#s3>.herol{grid-column:1;grid-row:1/span 4;align-self:center}#s3>.music{grid-column:2;grid-row:1}#s3>.lyrics{grid-column:2;grid-row:2}#s3>.btn{grid-column:2;grid-row:3}#s3>iframe{grid-column:2;grid-row:4}
+#s3 .letter{padding:40px 44px;margin-top:0}
+#s3 .letter .to{font-size:56px}#s3 .letter p{font-size:23px;line-height:1.6}#s3 .letter .from{font-size:44px}
+#s3 .lyrics{margin-top:18px;min-height:210px}#s3 .kara{font-size:30px;min-height:38px}#s3 .lyrics .ln{font-size:20px}
+#s3>div[style*="height:14px"]{display:none}
+#s3>.btn{margin-top:18px}
+#s4.on{align-content:start;padding-top:110px}
+#s4>.segs{grid-column:1/-1;max-width:1080px;justify-self:center;margin-bottom:28px}
+#s4>.hero{grid-row:2/span 6}
+#s4>div[style*="text-align:left"]{margin-top:0!important;text-align:left!important;align-self:end}
+#chTitle{font-size:44px!important}
+#chLine{font-size:26px!important;text-align:left;margin-top:14px!important;align-self:start}
+#s4>div[style*="display:flex;gap:10px"]{align-self:start;margin-top:22px;max-width:420px}
+#s4 .polaroid{width:340px;padding:16px 16px 22px}#s4 .polaroid img{height:380px}#s4 .polaroid .cap{font-size:32px}
+#s5>.hero{grid-row:1/span 8}
+#s5 #thumbs img{width:150px!important;height:190px!important}
+#s5>.script{font-size:78px!important;text-align:left;align-self:end}
+#s5>.serif{text-align:left;font-size:22px!important;max-width:none!important}
+#s5>.box{align-self:start}
+#s5>a{justify-self:start}
+.lights{height:80px}
+.logo{top:62px}
+#s1>#openAt{margin:16px 0 30px!important}
+#s4>*:not(.hero):not(.segs),#s5>*:not(.hero){justify-self:stretch!important}
+#s5>a,#s5>.link{justify-self:start!important}
+#s5>.link{padding-left:0}
+#s4>div[style*="display:flex;gap:10px"]{justify-self:start!important}
+.sprig{width:190px;height:270px}
+}
 @media (prefers-reduced-motion:reduce){.snow,.bulb,.bob,.pulse,.disc,.eq i{animation:none}.kara.run{animation:none;background-size:100% 100%,100% 100%}.seg.cur b{animation:none;width:100%}}
 </style>
 </head>
@@ -106,7 +157,7 @@ a{color:#FFD9DE}
     <div style="margin-top:26px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#FFD9DE">Một món quà từ</div>
     <div class="script" id="fromName" style="font-size:60px;line-height:1.05;text-shadow:0 0 22px rgba(230,25,58,.9)">Minh</div>
     <div style="font-size:13px;color:#DDB7BB;margin-top:2px">gửi riêng <span id="toName1">Mây</span> · Giáng sinh 2026</div>
-    <div class="bob" style="margin-top:30px"><div class="env" id="env1" style="width:280px;height:190px"><div class="back"></div><div class="front"></div><div class="flap"></div><div style="position:absolute;left:107px;top:78px" class="pulse" id="seal1"></div></div></div>
+    <div class="bob hero" style="margin-top:30px"><div class="env" id="env1" style="width:280px;height:190px"><div class="back"></div><div class="front"></div><div class="flap"></div><div style="position:absolute;left:107px;top:78px" class="pulse" id="seal1"></div></div></div>
     <div class="serif" style="margin-top:34px;font-size:20px;color:#FFD9DE" id="waitTxt">Còn một chút nữa thôi…</div>
     <div class="cd" id="cd"><div class="b"><div class="n" id="hh">00</div><div class="u">giờ</div></div><span class="c">:</span><div class="b"><div class="n" id="mm">00</div><div class="u">phút</div></div><span class="c">:</span><div class="b"><div class="n" id="ss">00</div><div class="u">giây</div></div></div>
     <div style="font-size:12.5px;color:#DDB7BB;margin-top:12px" id="openAt">Quà tự mở lúc 0h ngày 25/12/2026</div>
@@ -137,7 +188,7 @@ a{color:#FFD9DE}
   <!-- 3. Thư + lời -->
   <section class="scr" id="s3" aria-label="Lá thư" style="padding-top:62px;align-items:stretch">
     <div class="music" id="music"><div class="disc"><i></i></div><div style="flex:1;min-width:0"><div id="songTitle" style="font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Bài hát của bạn</div><div id="songSub" style="font-size:11.5px;color:#DDB7BB">bài hát được chọn riêng cho bạn</div></div><div class="eq"><i></i><i></i><i></i><i></i></div><button class="mbtn" id="muteBtn" type="button" aria-label="Tắt hoặc bật nhạc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg></button></div>
-    <div class="letter"><div class="to" id="letTo">Gửi Mây,</div><div id="letBody"></div><div class="from" id="letFrom">Minh</div></div>
+    <div class="letter herol"><div class="to" id="letTo">Gửi Mây,</div><div id="letBody"></div><div class="from" id="letFrom">Minh</div></div>
     <div class="lyrics" id="lyricsBox"><div class="lb">Lời bài hát</div><div class="ln" id="lnPrev"></div><div class="kara" id="lnCur"></div><div class="ln" id="lnNext"></div></div>
     <div style="height:14px;flex-shrink:0"></div>
     <button class="btn" id="toPhotos" type="button">Xem những tấm ảnh</button>
@@ -147,7 +198,7 @@ a{color:#FFD9DE}
   <section class="scr" id="s4" aria-label="Ảnh theo chương" style="padding-top:62px">
     <div class="segs" id="segs"></div>
     <div style="width:100%;text-align:left;margin-top:14px"><div id="chNum" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#FF8A99"></div><div id="chTitle" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:1.1;margin-top:4px"></div></div>
-    <div style="padding:30px 0 4px" id="phWrap"></div>
+    <div class="hero" style="padding:30px 0 4px" id="phWrap"></div>
     <div class="serif" id="chLine" style="font-size:19px;line-height:1.45;color:#FFE3E7;padding:0 8px;margin-top:6px;min-height:56px"></div>
     <div class="sp"></div>
     <div style="display:flex;gap:10px;width:100%"><button id="prevCh" type="button" aria-label="Chương trước" style="width:54px;height:54px;border-radius:14px;border:1px solid rgba(255,255,255,.35);background:none;color:#fff;cursor:pointer;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button class="btn" id="nextCh" type="button">Chương tiếp theo</button></div>
@@ -156,7 +207,7 @@ a{color:#FFD9DE}
   <!-- 5. Kết -->
   <section class="scr" id="s5" aria-label="Lời cuối">
     <img class="logo" src="assets/lettering-light.png" alt="Đắm Say">
-    <div id="thumbs" style="display:flex;gap:6px;margin-top:22px"></div>
+    <div id="thumbs" class="hero" style="display:flex;gap:6px;margin-top:22px"></div>
     <div class="script" style="margin-top:30px;font-size:54px;line-height:1.05;text-shadow:0 0 22px rgba(230,25,58,.9)">Giáng sinh<br>vui vẻ, <span id="toName5">Mây</span></div>
     <div class="serif" id="endLine" style="margin-top:12px;font-size:19px;line-height:1.5;color:#FFE3E7;max-width:290px"></div>
     <div class="box" style="margin-top:22px" id="replyBox">
@@ -187,9 +238,13 @@ var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  var s='',i,seed=7;function r(){seed=(seed*9301+49297)%233280;return seed/233280}
  for(i=0;i<20;i++){var z=3+Math.floor(r()*4);s+='<i class="snow" style="left:'+Math.floor(r()*100)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+(7+r()*7).toFixed(1)+'s;animation-delay:-'+(r()*12).toFixed(1)+'s"></i>'}
  $('snowbox').innerHTML=s;
- var cols=['#FF8A99','#FFD27A','#9FE3B5','#FFFFFF'],pts=[[12,22],[62,38],[112,48],[162,52],[212,50],[262,44],[312,34],[362,22]],b='<path d="M-4 8 Q 100 62 200 50 T 394 8" fill="none" stroke="#2a0509" stroke-width="1.6"/>';
- pts.forEach(function(p,i){var c=cols[i%4];b+='<circle class="bulb" cx="'+p[0]+'" cy="'+(p[1]+6)+'" r="5.5" fill="'+c+'" style="animation-delay:'+(i*.3).toFixed(1)+'s;filter:drop-shadow(0 0 6px '+c+')"/>'});
- $('lights').innerHTML=b;
+ function lights(){var W=Math.max(320,$('app')?document.getElementById('app').clientWidth:innerWidth),cols=['#FF8A99','#FFD27A','#9FE3B5','#FFFFFF'],seg=W<600?150:200,b='',d='',x,y,i=0;
+  function Y(x){var t=(x%seg)/seg;return 8+44*Math.sin(Math.PI*t)}
+  for(x=-4;x<=W+4;x+=8){d+=(x<0?'M':'L')+x+' '+Y(x+4).toFixed(1)+' '}
+  b='<path d="'+d+'" fill="none" stroke="#2a0509" stroke-width="1.6"/>';
+  for(x=seg/2.5;x<W;x+=seg/3){var c=cols[i%4];b+='<circle class="bulb" cx="'+x.toFixed(0)+'" cy="'+(Y(x)+6).toFixed(0)+'" r="5.5" fill="'+c+'" style="animation-delay:'+((i*.3)%2.4).toFixed(1)+'s;filter:drop-shadow(0 0 6px '+c+')"/>';i++}
+  var L=$('lights');L.setAttribute('viewBox','0 0 '+W+' 70');L.setAttribute('preserveAspectRatio','xMidYMin slice');L.innerHTML=b}
+ lights();window.addEventListener('resize',lights);
  var n='<path d="M60 170 Q58 90 76 20" stroke="#1F5A3E" stroke-width="3" fill="none"/>';
  for(i=0;i<7;i++){n+='<path d="M60 '+(150-i*16)+' L'+(18+i*3)+' '+(128-i*17)+'" stroke="#2F7A55" stroke-width="3" stroke-linecap="round"/><path d="M60 '+(150-i*16)+' L'+(102-i*3)+' '+(128-i*17)+'" stroke="#1F5A3E" stroke-width="3" stroke-linecap="round"/>'}
  n+='<circle cx="44" cy="118" r="5" fill="#E0193A"/><circle cx="76" cy="90" r="5" fill="#E0193A"/><circle cx="50" cy="66" r="4.5" fill="#FF8A99"/>';
